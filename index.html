@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infectious Disease Modeling | GitHub Portfolio</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --sidebar-width: 280px; /* Slightly wider to fit button */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            background-color: var(--bg-color);
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: var(--sidebar-width);
+            background: #fff;
+            height: 100vh;
+            position: fixed;
+            border-right: 1px solid #eaeaea;
+            padding: 2rem;
+            box-sizing: border-box;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav h3 { color: var(--primary-color); margin-top: 0; }
+        nav ul { list-style: none; padding: 0; margin-bottom: auto; } /* Pushes content down */
+        nav li { margin-bottom: 10px; }
+        nav a { text-decoration: none; color: #666; transition: 0.3s; }
+        nav a:hover { color: var(--accent-color); font-weight: bold; }
+
+        /* Download Button Style */
+        .btn-download {
+            display: block;
+            background-color: var(--accent-color);
+            color: white !important; /* Force white text */
+            padding: 12px 20px;
+            text-align: center;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-download:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            margin-left: var(--sidebar-width);
+            padding: 3rem 5rem;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Typography */
+        h1, h2, h3 { color: var(--primary-color); }
+        h1 { font-size: 2.5rem; border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; }
+        h2 { margin-top: 3rem; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        
+        /* Theory Box */
+        .theory-block {
+            background: white;
+            padding: 20px;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin: 20px 0;
+        }
+
+        /* Image/Visualization Styles */
+        .vis-container {
+            background: white;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .vis-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            /* border: 1px solid #eee; Remove border for clean diagrams */
+        }
+        .caption { font-size: 0.9rem; color: #666; margin-top: 10px; font-style: italic; }
+
+        /* Code snippets */
+        code { background: #e9ecef; padding: 2px 5px; border-radius: 3px; font-family: monospace; color: #e83e8c; }
+        
+        /* Diagram styling */
+        .diagram-img {
+            display: block;
+            margin: 20px auto;
+            max-width: 80%;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <h3>Contents</h3>
+    <ul>
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#theory">Theoretical Background</a></li>
+        <li><a href="#models">The Models</a></li>
+        <li><a href="#future">Conclusion & Future Work</a></li>
+    </ul>
+
+    <a href="https://github.com/Sai-Karthik-Shankar/Modelling-of-an-infectious-disease/archive/refs/heads/main.zip" class="btn-download">
+        ⬇ Download Code
+    </a>
+</nav>
+
+<main>
+
+    <section id="intro">
+        <h1>Infectious Disease Modeling</h1>
+        <p>
+            Welcome to this repository. This project explores the dynamics of disease transmission through computational simulation. By using <strong>Compartmental Models</strong>, we can mathematically estimate how an epidemic evolves over time, allowing us to visualize the impact of variables such as transmission rates, recovery times, and government interventions like lockdowns.
+        </p>
+        <p>
+            The project is implemented entirely in <strong>Python</strong>, utilizing <code>SciPy</code> for solving differential equations and <code>Matplotlib</code> for interactive visualizations.
+        </p>
+    </section>
+
+    <section id="theory">
+        <h2>Theoretical Background</h2>
+        
+        <h3>What is Compartmental Modeling?</h3>
+        <p>
+            Compartmental modeling simplifies the mathematical modeling of infectious diseases by assigning the population to labeled "compartments." For example:
+        </p>
+        <ul>
+            <li><strong>S (Susceptible):</strong> Individuals who can catch the disease.</li>
+            <li><strong>I (Infected):</strong> Individuals who have the disease and can transmit it.</li>
+            <li><strong>R (Recovered):</strong> Individuals who have recovered and are immune (or removed).</li>
+        </ul>
+        <p>
+            People progress between these compartments (flow patterns). The mathematics assumes the population is well-mixed, meaning every individual has an equal chance of coming into contact with every other individual.
+        </p>
+
+        <h3>History</h3>
+        <div class="theory-block">
+            <p>
+                The foundations of this field were laid in the early 20th century. While <strong>Ross (1916)</strong> and <strong>Hudson (1917)</strong> did foundational work on probability in pathometry, the definitive formulation of the deterministic compartmental model was established by <strong>W. O. Kermack and A. G. McKendrick</strong> in 1927. Their work remains the basis for most modern epidemiological models used by the CDC and WHO today.
+            </p>
+        </div>
+
+        <h3>The Mathematics (ODEs)</h3>
+        <p>
+            The models are driven by systems of Ordinary Differential Equations (ODEs). The fundamental transition from Susceptible to Infected is driven by the transmission rate $\beta$ (beta).
+        </p>
+        <p>
+            A standard SIR system is described as:
+        </p>
+        <p>
+            $$ \frac{dS}{dt} = - \frac{\beta S I}{N} $$
+            $$ \frac{dI}{dt} = \frac{\beta S I}{N} - \gamma I $$
+            $$ \frac{dR}{dt} = \gamma I $$
+        </p>
+        <p>
+            Where $N$ is total population and $\gamma$ is the recovery rate.
+        </p>
+    </section>
+
+    <section id="models">
+        <h2>The Models</h2>
+        
+        <h3>1. The SIR Model</h3>
+        <p>
+            The simplest model considering a fixed population with three compartments. It assumes immunity is permanent and there are no vital dynamics (births/deaths) during the outbreak.
+        </p>
+        
+        <div class="vis-container" style="border:none;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/SIR_Flow_Diagram.svg" alt="SIR Flow Diagram" class="diagram-img">
+            <div class="caption">Figure 1: Flow of individuals between Susceptible, Infected, and Recovered compartments.</div>
+        </div>
+
+        <div class="vis-container">
+            <img src="sir_chart.png" alt="SIR Model Graph" style="width: 90%;">
+            <div class="caption">Figure 2: Standard SIR trajectory showing the peak of infection from the Python simulation.</div>
+        </div>
+
+        <h3>2. The SEIRD Model (Interactive)</h3>
+        <p>
+            This model adds significant complexity for more realistic simulations, specifically for diseases like COVID-19.
+        </p>
+        <ul>
+            <li><strong>Exposed (E):</strong> Accounts for the incubation period where patients are infected but not yet infectious.</li>
+            <li><strong>Critical (C) & Dead (D):</strong> Tracks severe cases.</li>
+            <li><strong>Hospital Capacity:</strong> The model introduces a parameter for `Beds`. If Critical cases > Beds, the death rate increases.</li>
+        </ul>
+        
+        <div class="vis-container">
+            <img src="seird_chart.png" alt="SEIRD Model Graph" style="width: 90%;">
+            <div class="caption">Figure 3: SEIRD simulation showing the impact of hospital bed saturation on mortality.</div>
+        </div>
+
+        <h3>3. The SEIRSD Model (Waning Immunity)</h3>
+        <p>
+            Unlike the previous models, the SEIRSD model assumes immunity is temporary. Individuals in the <strong>Recovered</strong> compartment eventually lose immunity and return to the <strong>Susceptible</strong> compartment.
+        </p>
+        <p>
+            $$ \frac{dS}{dt} = -\beta \frac{SI}{N} + \mu R $$
+        </p>
+        <p>
+            Where $\mu$ represents the rate of immunity loss. This creates an endemic state where the disease never fully disappears but oscillates over time.
+        </p>
+
+        <div class="vis-container">
+            <img src="seirsd_chart.png" alt="SEIRSD Model Graph" style="width: 90%;">
+            <div class="caption">Figure 4: Long-term simulation showing endemic oscillations due to waning immunity.</div>
+        </div>
+    </section>
+
+    <section id="future">
+        <h2>Conclusion & Future Work</h2>
+        <p>
+            These models provide a robust framework for understanding epidemic curves. The inclusion of interactive elements, such as <strong>lockdown timing sliders</strong> and <strong>healthcare capacity limits</strong>, allows for "What-If" analysis that is crucial for policy making.
+        </p>
+        <h3>Future Improvements</h3>
+        <ul>
+            <li><strong>Stochastic Implementation:</strong> Moving from deterministic ODEs to Gillespie algorithms to better simulate small populations where chance plays a larger role.</li>
+            <li><strong>Spatial Dynamics:</strong> Implementing a network-based approach to simulate spread between different cities or regions.</li>
+            <li><strong>Real-Data Fitting:</strong> Integrating algorithms to fit the model parameters ($\beta$ and $\gamma$) to real-world CSV data from ongoing epidemics.</li>
+        </ul>
+    </section>
+
+</main>
+
+</body>
+</html>
